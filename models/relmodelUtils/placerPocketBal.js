@@ -34,8 +34,11 @@ function getPlacerPocketBal(placerID) {
         .then(data => {
 
                         if (data.placerpocketbal > data.placerpocketlimit) {
-                            console.log("Error input doesn't exist " + JSON.stringify(rec.body.role));
-                        }      
+                            console.log("Send notification to Placer to make deposit in the bank");
+                        }
+                        else if (data.placerpocketbal=0){
+                          console.log("Send notification to Placer to withdraw");
+                        }
 
         })
         .catch(err => {
