@@ -16,7 +16,7 @@ const
 
 
 function getPlacerPocketBal(placerID) {
-     if (_.isEmpty(placerid) || !Id.isValid(placerid)) {
+     if (_.isEmpty(placerID) || !Id.isValid(placerID)) {
         console.log("Either userid parameter is not passed or userid is not in the right format")
         return Promise.reject(error_codes.MissingOrInvalid);
     }
@@ -32,17 +32,10 @@ function getPlacerPocketBal(placerID) {
             }
         })
         .then(data => {
-                    return RolePerm.findOne({"role":data.role.toLowerCase()})
-                        .exec()
-                        .then(result => {
-                        if (!_.isEmpty(result)) {
-                            return result;
-                        }
-                        else {
+
+                        if (data.placerpocketbal > data.placerpocketlimit) {
                             console.log("Error input doesn't exist " + JSON.stringify(rec.body.role));
-                            return Promise.reject(error_codes.ResourceNotExist);
-                        }
-                    });
+                        }      
 
         })
         .catch(err => {
