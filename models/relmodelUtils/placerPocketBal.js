@@ -13,8 +13,11 @@ const
         Id = require('../../utils/ValidObjectid'),
         error_codes = require('../../utils/errormessages').error_codes;
 
-
-
+//=============================================================================
+  /**
+  * Get Placer Pocket Balance and Pocket Limit and send SNS
+  */
+//=============================================================================
 function getPlacerPocketBal(placerID) {
      if (_.isEmpty(placerID) || !Id.isValid(placerID)) {
         console.log("Either userid parameter is not passed or userid is not in the right format")
